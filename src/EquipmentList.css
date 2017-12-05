@@ -1,3 +1,8 @@
 .EquipmentList {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #00d8ff;
+  background: #ddeeff;
 }

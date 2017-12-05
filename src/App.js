@@ -6,8 +6,7 @@ import EquipmentList from './EquipmentList'
 const App = () => {
   return (
     <div className="App">
-      <EquipmentList name="Warlock" />
-      <EquipmentList name="Titan" />
+      <EquipmentList />
     </div>
   )
 }
