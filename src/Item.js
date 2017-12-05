@@ -5,19 +5,23 @@ export default class Item extends Component {
   constructor(props) {
     super(props)
     this.state = { description: 'Item' }
-    this.frenchify = this.frenchify.bind(this)
+    this.translate = this.translate.bind(this)
   }
 
   render() {
     return (
       <div className="Item">
-        {this.state.description}: {this.props.name}!
-        <button onClick={this.frenchify}>Frenchify!</button>
+        <span className="description">
+          {this.state.description}: {this.props.name}!
+        </span>
+        <button className="translate" onClick={this.translate}>
+          Translate!
+        </button>
       </div>
     )
   }
 
-  frenchify() {
+  translate() {
     this.setState({ description: 'Article' })
   }
 }
