@@ -22,7 +22,15 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/",
       "!src/{registerServiceWorker,index}.js"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 0
+      }
+    }
   },
   "scripts": {
     "precommit": "lint-staged",
