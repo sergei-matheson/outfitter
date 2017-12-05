@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './EquipmentList.css'
 
-const EquipmentList = props => {
-  return <div className="EquipmentList">Equipment List for {props.name}!</div>
+export default class EquipmentList extends Component {
+  render() {
+    return (
+      <div className="EquipmentList">Equipment List for {this.props.name}!</div>
+    )
+  }
 }
-export default EquipmentList
