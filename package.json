@@ -17,12 +17,20 @@
       "git add"
     ]
   },
+  "jest": {
+    "collectCoverageFrom" : [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!src/{registerServiceWorker,index}.js"
+    ]
+  },
   "scripts": {
     "precommit": "lint-staged",
     "flow": "flow",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "coverage": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
