@@ -1,11 +1,13 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import Item from './Item'
 
 let item
 
+const clickTranslate = () => item.find('button.translate').simulate('click')
+
 beforeEach(() => {
-  item = shallow(<Item name="Witherspoon" />)
+  item = mount(<Item name="Witherspoon" />)
 })
 
 it('shows the name in the description', () => {
@@ -13,11 +15,17 @@ it('shows the name in the description', () => {
 })
 
 describe('when the translate button is clicked', () => {
-  beforeEach(() => {
-    item.find('.translate').simulate('click')
-  })
+  beforeEach(clickTranslate)
 
   it('shows the translated description', () => {
     expect(item.find('.description').text()).toEqual('Article: Witherspoon!')
+  })
+
+  describe('and then clicked again', () => {
+    beforeEach(clickTranslate)
+
+    it('shows the original description', () => {
+      expect(item.find('.description').text()).toEqual('Item: Witherspoon!')
+    })
   })
 })

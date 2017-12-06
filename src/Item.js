@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
+import { Button, Label } from 'semantic-ui-react'
+
 import './Item.css'
+
+const ENG = 'Item'
+const FRE = 'Article'
 
 export default class Item extends Component {
   constructor(props) {
@@ -11,17 +16,30 @@ export default class Item extends Component {
   render() {
     return (
       <div className="Item">
-        <span className="description">
-          {this.state.description}: {this.props.name}!
-        </span>
-        <button className="translate" onClick={this.translate}>
-          Translate!
-        </button>
+        <Label>
+          <span className="description">
+            {this.description()}: {this.props.name}!
+          </span>
+          <Button
+            toggle
+            active={this.state.translated}
+            className="translate"
+            onClick={this.translate}
+          >
+            Translate!
+          </Button>
+        </Label>
       </div>
     )
   }
 
+  description() {
+    return this.state.translated ? FRE : ENG
+  }
+
   translate() {
-    this.setState({ description: 'Article' })
+    this.setState({
+      translated: !this.state.translated
+    })
   }
 }

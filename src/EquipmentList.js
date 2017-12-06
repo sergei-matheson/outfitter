@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { List } from 'semantic-ui-react'
 import './EquipmentList.css'
 
 import Item from './Item'
@@ -12,10 +13,14 @@ export default class EquipmentList extends Component {
   }
 
   render() {
-    return <div className="EquipmentList">{this.renderItems()}</div>
+    return <List className="EquipmentList">{this.renderItems()}</List>
   }
 
   renderItems() {
-    return this.state.itemNames.map(name => <Item key={name} name={name} />)
+    return this.state.itemNames.map(name => (
+      <List.Item key={name}>
+        <Item name={name} />
+      </List.Item>
+    ))
   }
 }
