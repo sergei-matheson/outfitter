@@ -1,13 +1,11 @@
 import React from 'react'
 import './App.css'
+import { compose, setDisplayName } from 'recompose'
 
 import EquipmentList from './EquipmentList'
 
-const App = () => {
-  return (
-    <div className="App">
-      <EquipmentList />
-    </div>
-  )
-}
-export default App
+export default compose(setDisplayName('App'))(() => (
+  <div className="App">
+    <EquipmentList />
+  </div>
+))
