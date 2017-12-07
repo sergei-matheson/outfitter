@@ -4,12 +4,19 @@ import './EquipmentList.css'
 
 import Item from './Item'
 
+const API_URL = 'http://jsonplaceholder.typicode.com/comments'
+
 export default class EquipmentList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      itemNames: ['Glove', 'Boot', 'Hood', 'Pauldron']
+      itemNames: []
     }
+  }
+
+  async componentDidMount() {
+    let items = await fetch(API_URL).then(response => response.json())
+    this.setState({ itemNames: items.map(item => item.name) })
   }
 
   render() {

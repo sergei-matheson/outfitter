@@ -1,2 +1,5 @@
 .Item {
 }
+.Item > .ui.label {
+  width: 100%;
+}

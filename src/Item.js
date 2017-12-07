@@ -17,7 +17,7 @@ export default class Item extends Component {
     return (
       <div className="Item">
         <Label>
-          <span className="description">
+          <span className="descriptionText">
             {this.description()}: {this.props.name}!
           </span>
           <Button
@@ -25,6 +25,7 @@ export default class Item extends Component {
             active={this.state.translated}
             className="translate"
             onClick={this.translate}
+            floated="right"
           >
             Translate!
           </Button>
