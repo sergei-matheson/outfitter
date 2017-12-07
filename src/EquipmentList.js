@@ -5,14 +5,14 @@ import { map, pluck } from 'ramda'
 import './EquipmentList.css'
 import Item from './Item'
 
-const API_URL = 'http://jsonplaceholder.typicode.com/comments'
+import { fetchItems } from './Client'
 
 export default compose(
   setDisplayName('EquipmentList'),
   withState('itemNames', 'updateItemNames', []),
   lifecycle({
     async componentDidMount() {
-      let items = await fetch(API_URL).then(response => response.json())
+      let items = await fetchItems()
       let { updateItemNames } = this.props
       updateItemNames(pluck('name', items))
     }
