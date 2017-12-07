@@ -2,6 +2,21 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import EquipmentList from './EquipmentList'
 
+import { map } from 'ramda'
+
+jest.mock('./Client', () => {
+  return {
+    fetchItems: jest.fn(() =>
+      map(
+        name => {
+          name
+        },
+        ['Glove', 'Boot', 'Hood', 'Pauldron']
+      )
+    )
+  }
+})
+
 let list
 
 beforeEach(() => {
