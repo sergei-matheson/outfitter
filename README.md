@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sergei-matheson/outfitter.svg?branch=master)](https://travis-ci.org/sergei-matheson/outfitter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4429c99d763cbb1501b4/maintainability)](https://codeclimate.com/github/sergei-matheson/outfitter/maintainability)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
