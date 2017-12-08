@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 jest.mock('./Client', () => {
   return {
-    fetchItems: jest.fn(() =>
-      ['Glove', 'Boot', 'Hood', 'Pauldron'].map(name => {
-        return { name }
-      })
-    )
+    fetchItems: jest.fn(() => [])
   }
 })
 
