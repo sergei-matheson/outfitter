@@ -20,10 +20,9 @@ export default compose(
   withState('isLoading', 'updateIsLoading', false),
   lifecycle({
     async componentDidMount() {
-      const { updateIsLoading } = this.props
+      const { updateIsLoading, updateItemNames } = this.props
       updateIsLoading(true)
       let items = await fetchItems()
-      let { updateItemNames } = this.props
       updateItemNames(pluck('name', items))
       updateIsLoading(false)
     }
