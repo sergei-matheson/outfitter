@@ -9,13 +9,13 @@ import {
   renderComponent
 } from 'recompose'
 import { map, pluck } from 'ramda'
-import './EquipmentList.css'
+import './ItemList.css'
 import Item from './Item'
 
 import { fetchItems } from '../Client'
 
 export default compose(
-  setDisplayName('EquipmentList'),
+  setDisplayName('ItemList'),
   withState('itemNames', 'updateItemNames', []),
   withState('isLoading', 'updateIsLoading', false),
   lifecycle({
@@ -36,7 +36,7 @@ export default compose(
     ))
   )
 )(({ itemNames }) => (
-  <List className="EquipmentList">
+  <List className="ItemList">
     {map(
       name => (
         <List.Item key={name}>

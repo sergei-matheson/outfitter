@@ -13,12 +13,12 @@ jest.mock('../Client', () => {
   }
 })
 
-import EquipmentList from './EquipmentList'
+import ItemList from './ItemList'
 
 let list
 
 beforeEach(() => {
-  list = mount(<EquipmentList />)
+  list = mount(<ItemList />)
 })
 
 afterEach(() => {

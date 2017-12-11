@@ -2,10 +2,10 @@ import React from 'react'
 import './App.css'
 import { compose, setDisplayName } from 'recompose'
 
-import EquipmentList from './EquipmentList'
+import ItemList from './ItemList'
 
 export default compose(setDisplayName('App'))(() => (
   <div className="App">
-    <EquipmentList />
+    <ItemList />
   </div>
 ))
