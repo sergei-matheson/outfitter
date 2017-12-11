@@ -12,7 +12,7 @@ import { map, pluck } from 'ramda'
 import './EquipmentList.css'
 import Item from './Item'
 
-import { fetchItems } from './Client'
+import { fetchItems } from '../Client'
 
 export default compose(
   setDisplayName('EquipmentList'),

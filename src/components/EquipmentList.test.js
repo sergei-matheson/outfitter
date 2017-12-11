@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 
 import { map } from 'ramda'
 
-jest.mock('./Client', () => {
+jest.mock('../Client', () => {
   return {
     fetchItems: jest.fn(() =>
       ['Glove', 'Boot', 'Hood', 'Pauldron'].map(name => {
