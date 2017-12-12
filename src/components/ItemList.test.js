@@ -3,54 +3,47 @@ import { mount } from 'enzyme'
 
 import { map } from 'ramda'
 
-jest.mock('../Client', () => {
-  return {
-    fetchItems: jest.fn(() =>
-      ['Glove', 'Boot', 'Hood', 'Pauldron'].map(name => {
-        return { name }
-      })
-    )
-  }
-})
-
 import ItemList from './ItemList'
 
-let list
+let subject
 
-beforeEach(() => {
-  list = mount(<ItemList />)
-})
+const itemNames = ['Glove', 'Boot', 'Hood', 'Pauldron']
 
-afterEach(() => {
-  list.unmount()
-})
-
-const whenListUpdated = (callback, done) => {
-  return setTimeout(() => {
-    list.update()
-    try {
-      callback()
-      done()
-    } catch (e) {
-      done.fail(e)
-    }
-  }, 100)
+const initSubject = isLoading => {
+  subject = mount(<ItemList itemNames={itemNames} isLoading={isLoading} />)
 }
 
-it('renders four named items', async done => {
-  whenListUpdated(() => expect(list.find('Item')).toHaveLength(4), done)
+afterEach(() => {
+  subject.unmount()
 })
 
-describe('the items rendered', () => {
-  let items
+describe('when loading', () => {
+  beforeEach(() => initSubject(true))
 
-  it('have names props', async done => {
-    whenListUpdated(() => {
-      items = list.find('Item')
+  it('shows a dimmed loading icon', () => {
+    let dimmer = subject.find('Dimmer')
+    expect(dimmer).toHaveLength(1)
+
+    let loader = dimmer.find('Loader')
+    expect(loader).toHaveLength(1)
+    expect(loader.text()).toEqual('Loading items...')
+  })
+})
+
+describe('when loading is finished', () => {
+  beforeEach(() => initSubject(false))
+
+  it('renders four named items', () => {
+    expect(subject.find('Item')).toHaveLength(4)
+  })
+
+  describe('the items rendered', () => {
+    it('have names props', () => {
+      let items = subject.find('Item')
       expect(items.at(0).props().name).toEqual('Glove')
       expect(items.at(1).props().name).toEqual('Boot')
       expect(items.at(2).props().name).toEqual('Hood')
       expect(items.at(3).props().name).toEqual('Pauldron')
-    }, done)
+    })
   })
 })

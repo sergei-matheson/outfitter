@@ -1,17 +1,29 @@
 import React from 'react'
 import { List, Dimmer, Loader } from 'semantic-ui-react'
-import { compose, setDisplayName, branch, renderComponent } from 'recompose'
+import PropTypes from 'prop-types'
 import { map } from 'ramda'
+import {
+  compose,
+  setDisplayName,
+  branch,
+  renderComponent,
+  setPropTypes
+} from 'recompose'
+
 import './ItemList.css'
 import Item from './Item'
 
 export default compose(
   setDisplayName('ItemList'),
+  setPropTypes({
+    isLoading: PropTypes.bool.isRequired,
+    itemNames: PropTypes.array.isRequired
+  }),
   branch(
     ({ isLoading }) => isLoading,
     renderComponent(() => (
       <Dimmer active>
-        <Loader>Loading</Loader>
+        <Loader size="massive">Loading items...</Loader>
       </Dimmer>
     ))
   )
