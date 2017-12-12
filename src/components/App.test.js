@@ -1,6 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 import App from './App'
+import initStore from '../store'
+
 jest.mock('../Client', () => {
   return {
     fetchItems: jest.fn(() => [])
@@ -8,6 +11,12 @@ jest.mock('../Client', () => {
 })
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
+  const root = document.createElement('div')
+
+  render(
+    <Provider store={initStore()}>
+      <App />
+    </Provider>,
+    root
+  )
 })
