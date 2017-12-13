@@ -1,13 +1,5 @@
-//import { TOGGLE_ITEM_TRANSLATION, ADD_ITEM } from '../actions'
-import { ADD_ITEM, REQUEST_ITEMS, RECEIVE_ITEMS } from '../actions'
+import { REQUEST_ITEMS, RECEIVE_ITEMS } from '../actions'
 import { map, fromPairs, compose, pluck } from 'ramda'
-const addItem = ({ itemsById, itemIds }, { item }) => {
-  let id = item.id
-  return {
-    itemsById: { ...itemsById, [id]: item },
-    itemIds: [...itemIds, id]
-  }
-}
 
 const receiveItems = (state, { items }) => {
   return {
@@ -24,7 +16,6 @@ const requestItems = state => ({
 })
 
 let handlers = {
-  [ADD_ITEM]: addItem,
   [REQUEST_ITEMS]: requestItems,
   [RECEIVE_ITEMS]: receiveItems
 }
@@ -32,15 +23,11 @@ let handlers = {
 let defaultHandler = (state, action) =>
   undefined === state ? initialState() : state
 
-const initialState = () => {
-  return {
-    itemsById: {
-      1: { name: 'woot' }
-    },
-    itemIds: [1],
-    isLoading: false
-  }
-}
+const initialState = () => ({
+  itemsById: {},
+  itemIds: [],
+  isLoading: false
+})
 
 export default (state, action) => {
   return (handlers[action.type] || defaultHandler)(state, action)
