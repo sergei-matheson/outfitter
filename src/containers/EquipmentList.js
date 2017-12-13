@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { pipe, values, path, pluck } from 'ramda'
 import ItemList from '../components/ItemList'
 import { fetchItemsFromAPI } from '../actions/'
-import { compose, lifecycle } from 'recompose'
+import { compose, lifecycle, setDisplayName } from 'recompose'
 
-const EQList = compose(
+const EquipmentList = compose(
+  setDisplayName('EquipmentList'),
   lifecycle({
     componentDidMount() {
       this.props.fetchItems()
@@ -13,13 +14,14 @@ const EQList = compose(
   })
 )(props => <ItemList {...props} />)
 
+const itemNames = pipe(path(['items', 'itemsById']), values, pluck('name'))
+const isLoading = path(['items', 'isLoading'])
+
 export default connect(
   store => {
     return {
-      itemNames: pipe(path(['items', 'itemsById']), values, pluck('name'))(
-        store
-      ),
-      isLoading: path(['items', 'isLoading'])(store)
+      itemNames: itemNames(store),
+      isLoading: isLoading(store)
     }
   },
   dispatch => {
@@ -29,4 +31,4 @@ export default connect(
       }
     }
   }
-)(EQList)
+)(EquipmentList)
