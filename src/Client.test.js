@@ -21,7 +21,7 @@ const items = [
 describe('fetchItems', () => {
   it('returns items from the API as an array of objects', async () => {
     fetchMock.get(
-      'http://jsonplaceholder.typicode.com/comments',
+      'https://jsonplaceholder.typicode.com/comments',
       JSON.stringify(items)
     )
     return expect(await fetchItems()).toEqual(items)
