@@ -1,0 +1,18 @@
+#!/bin/bash -e
+ACTION=${1:-start}
+
+case $ACTION in
+  start)
+    echo "starting proxy"
+    $(npm bin)/local-ssl-proxy --source 3001 --target 3000&
+    echo $! > ./tmp/proxy.pid
+    ;;
+  stop)
+    echo "stopping proxy"
+    kill $(cat ./tmp/proxy.pid )
+    echo "done"
+    ;;
+  *)
+    >&2 echo "Unknown action '$ACTION'"
+    exit 1
+esac
