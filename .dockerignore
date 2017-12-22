@@ -1,0 +1,3 @@
+# We're only dockerising the build dir for release
+./src
+./node_modules
