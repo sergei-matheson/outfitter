@@ -3,7 +3,7 @@ import { fetchItems } from '../Client'
 
 jest.mock('../Client', () => {
   return {
-    fetchItems: jest.fn(() => ['the items'])
+    fetchItems: jest.fn().mockReturnValue(['the items'])
   }
 })
 

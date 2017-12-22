@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { ConnectedRouter as Router } from 'react-router-redux'
 import App from './App'
-import initStore from '../store'
+import { initStore, history } from '../store'
 
 jest.mock('../Client', () => {
   return {
@@ -15,7 +16,9 @@ it('renders without crashing', () => {
 
   render(
     <Provider store={initStore()}>
-      <App />
+      <Router history={history}>
+        <App />
+      </Router>
     </Provider>,
     root
   )
