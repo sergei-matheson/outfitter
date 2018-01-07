@@ -6,10 +6,7 @@ import { Route, Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 
 import EquipmentList from '../containers/EquipmentList'
-
-const Welcome = compose(setDisplayName('Welcome'))(() => (
-  <h1>Welcome to Outfitter</h1>
-))
+import Home from './Home'
 
 export default compose(setDisplayName('App'))(() => (
   <div className="App">
@@ -22,7 +19,7 @@ export default compose(setDisplayName('App'))(() => (
       </Menu.Item>
     </Menu>
     <main>
-      <Route exact path="/" component={Welcome} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/equipment-list" component={EquipmentList} />
     </main>
   </div>
