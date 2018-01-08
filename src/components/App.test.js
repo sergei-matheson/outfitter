@@ -1,10 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter as Router } from 'react-router-redux'
 import { MemoryRouter } from 'react-router'
 import App from './App'
-import { initStore, history } from '../store'
+import { initStore } from '../store'
 
 import { mount } from 'enzyme'
 
@@ -14,52 +13,33 @@ jest.mock('../Client', () => {
   }
 })
 
-it('renders without crashing', () => {
-  const root = document.createElement('div')
-
-  render(
-    <Provider store={initStore()}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>,
-    root
-  )
-})
-
 describe('when mounted', () => {
-  let subject
-
-  const routeTo = route => {
-    subject = mount(
+  const routeTo = route =>
+    mount(
       <Provider store={initStore()}>
         <MemoryRouter initialEntries={[route]}>
           <App />
         </MemoryRouter>
       </Provider>
     )
-  }
 
-  const expectComponent = name => {
+  const waitForRoute = () => new Promise(resolve => setTimeout(resolve, 0))
+
+  const expectRoutesToComponent = async (path, component) => {
+    let subject = routeTo(path)
+    await waitForRoute()
     subject.update()
-    expect(subject.find(name).exists()).toBeTruthy()
+    expect(subject.find(component).exists()).toBeTruthy()
+    subject.unmount()
   }
-
-  afterEach(() => subject.unmount())
 
   describe('by default', () => {
-    beforeEach(() => routeTo('/'))
-
-    it('it renders the home page', () => {
-      expectComponent('Home')
-    })
+    it('it renders the home page', async () =>
+      expectRoutesToComponent('/', 'Home'))
   })
 
   describe('when equipment list is clicked', () => {
-    beforeEach(() => routeTo('/equipment-list'))
-
-    it('it renders the equipment list', () => {
-      expectComponent('EquipmentList')
-    })
+    it('it renders the equipment list', async () =>
+      expectRoutesToComponent('/equipment-list', 'EquipmentList'))
   })
 })
