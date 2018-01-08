@@ -9,10 +9,10 @@ afterEach(() => subject.unmount())
 
 const loader = () => {
   let dimmer = subject.find('Dimmer')
-  expect(dimmer).toHaveLength(1)
+  expect(dimmer.exists()).toBeTruthy()
 
   let loader = dimmer.find('Loader')
-  expect(loader).toHaveLength(1)
+  expect(loader.exists()).toBeTruthy()
   return loader
 }
 

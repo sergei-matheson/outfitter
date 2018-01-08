@@ -2,16 +2,20 @@ import React from 'react'
 import './App.css'
 import { compose, setDisplayName } from 'recompose'
 import { Route, Link } from 'react-router-dom'
-
+import Loadable from 'react-loadable'
 import { Menu } from 'semantic-ui-react'
 
-import asyncComponent from './AsyncComponent'
+import Loading from './Loading'
 
 // Asynchronously loaded route components for code splitting.
-const AsyncHome = asyncComponent(() => import('./Home'))
-const AsyncEquipmentList = asyncComponent(() =>
-  import('../containers/EquipmentList')
-)
+const AsyncHome = Loadable({
+  loader: () => import('./Home'),
+  loading: Loading
+})
+const AsyncEquipmentList = Loadable({
+  loader: () => import('../containers/EquipmentList'),
+  loading: Loading
+})
 
 export default compose(setDisplayName('App'))(() => (
   <div className="App">
