@@ -5,8 +5,13 @@ import { Route, Link } from 'react-router-dom'
 
 import { Menu } from 'semantic-ui-react'
 
-import EquipmentList from '../containers/EquipmentList'
-import Home from './Home'
+import asyncComponent from './AsyncComponent'
+
+// Asynchronously loaded route components for code splitting.
+const AsyncHome = asyncComponent(() => import('./Home'))
+const AsyncEquipmentList = asyncComponent(() =>
+  import('../containers/EquipmentList')
+)
 
 export default compose(setDisplayName('App'))(() => (
   <div className="App">
@@ -19,8 +24,8 @@ export default compose(setDisplayName('App'))(() => (
       </Menu.Item>
     </Menu>
     <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/equipment-list" component={EquipmentList} />
+      <Route exact path="/" component={AsyncHome} />
+      <Route exact path="/equipment-list" component={AsyncEquipmentList} />
     </main>
   </div>
 ))
