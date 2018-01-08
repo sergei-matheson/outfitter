@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Dimmer, Loader } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import { map } from 'ramda'
 import {
@@ -9,6 +9,8 @@ import {
   renderComponent,
   setPropTypes
 } from 'recompose'
+
+import Loading from './Loading'
 
 import './ItemList.css'
 import Item from './Item'
@@ -21,11 +23,7 @@ export default compose(
   }),
   branch(
     ({ isLoading }) => isLoading,
-    renderComponent(() => (
-      <Dimmer active>
-        <Loader size="massive">Loading items...</Loader>
-      </Dimmer>
-    ))
+    renderComponent(() => <Loading>Loading items...</Loading>)
   )
 )(({ itemNames }) => (
   <List className="ItemList">

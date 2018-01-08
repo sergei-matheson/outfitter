@@ -20,13 +20,8 @@ afterEach(() => {
 describe('when loading', () => {
   beforeEach(() => initSubject(true))
 
-  it('shows a dimmed loading icon', () => {
-    let dimmer = subject.find('Dimmer')
-    expect(dimmer).toHaveLength(1)
-
-    let loader = dimmer.find('Loader')
-    expect(loader).toHaveLength(1)
-    expect(loader.text()).toEqual('Loading items...')
+  it('shows a loading message', () => {
+    expect(subject.find('Loading').text()).toEqual('Loading items...')
   })
 })
 
