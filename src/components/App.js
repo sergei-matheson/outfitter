@@ -5,6 +5,8 @@ import { Route, Link } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import { Menu } from 'semantic-ui-react'
 
+import AuthMenu from './AuthMenu'
+
 import Loading from './Loading'
 
 // Asynchronously loaded route components for code splitting.
@@ -26,6 +28,7 @@ export default compose(setDisplayName('App'))(() => (
       <Menu.Item name="equipment-list">
         <Link to="/equipment-list">Equipment List</Link>
       </Menu.Item>
+      <AuthMenu />
     </Menu>
     <main>
       <Route exact path="/" component={AsyncHome} />
