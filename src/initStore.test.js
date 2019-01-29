@@ -26,7 +26,7 @@ import thunk from 'redux-thunk'
 import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 
-import { initStore } from './store'
+import initStore from './initStore'
 
 describe('when imported', () => {
   it('creates history', () => {
